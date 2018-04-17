@@ -1,0 +1,326 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sql",
+				"sql_insert"
+			],
+			[
+				"itemd",
+				"itemDueDate"
+			],
+			[
+				"desc",
+				"description"
+			],
+			[
+				"pr",
+				"priority"
+			],
+			[
+				"due",
+				"duedate"
+			],
+			[
+				"in",
+				"input\tTag"
+			],
+			[
+				"json_",
+				"json_encode"
+			],
+			[
+				"Pro",
+				"propertyforrent"
+			],
+			[
+				"J",
+				"JOIN"
+			],
+			[
+				"b",
+				"branch"
+			],
+			[
+				"bran",
+				"branchNo"
+			],
+			[
+				"Whe",
+				"WHERE"
+			],
+			[
+				"propert",
+				"propertyNo"
+			],
+			[
+				"M",
+				"MAX"
+			],
+			[
+				"br",
+				"branchNo"
+			],
+			[
+				"st",
+				"staff"
+			],
+			[
+				"From",
+				"FROM"
+			],
+			[
+				"Bran",
+				"branchNo"
+			],
+			[
+				"Br",
+				"branchNo"
+			],
+			[
+				"mari",
+				"margin"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"blo",
+				"block"
+			],
+			[
+				"di",
+				"div\tTag"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"ma",
+				"margin-right"
+			],
+			[
+				"bo",
+				"border-radius"
+			],
+			[
+				"block",
+				"inline-block"
+			],
+			[
+				"wrap",
+				"word-wrap"
+			],
+			[
+				"font-",
+				"font-variant"
+			],
+			[
+				"tes",
+				"test2"
+			],
+			[
+				"t",
+				"test1"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/claud/Documents/00Practical/inventory_management_simulator/index.html",
+		"/C/Users/claud/Documents/00Practical/snippets2/2018work/CS315_DB/04midtermpart2/index.html",
+		"/C/wamp64/www/services/index.html",
+		"/C/wamp64/www/services/service.php",
+		"/C/Users/claud/Documents/00Practical/snippets2/2018work/CS315_DB/04midtermpart2/service.php",
+		"/C/Users/claud/Documents/00Practical/snippets2/2018work/CS315_DB/04midtermpart2/midtermpart.sql",
+		"/C/wamp64/services/index.html",
+		"/C/Users/claud/Documents/00Practical/snippets2/2018work/CS315_DB/00firstphpapp/index.php",
+		"/C/wamp64/services/service.php",
+		"/C/Users/claud/Documents/00Practical/snippets2/2017work/secondwebsite/css/main.css",
+		"/C/Users/claud/Documents/00Practical/snippets2/2017work/secondwebsite/about.html",
+		"/C/Users/claud/Desktop/swiftnotes.txt",
+		"/C/Users/claud/Documents/00Practical/snippets2/2018work/CS315_DB/02sqllab/sqlqueries.sql",
+		"/C/Users/claud/Documents/00Practical/snippets2/2017work/INF403/TP Files/tp2/req.sql",
+		"/C/Users/claud/Desktop/index.html",
+		"/C/Users/claud/Desktop/style.css",
+		"/C/Users/claud/Documents/00Practical/gildaapp/Notepad.txt",
+		"/C/Users/claud/Desktop/try.txt",
+		"/C/Users/claud/Desktop/titatoaji.txt",
+		"/C/Users/claud/Desktop/cloudphp_start_files/cloudphp/items.txt",
+		"/C/Users/claud/Desktop/cloudphp_start_files/cloudphp/additem.php",
+		"/C/Users/claud/Desktop/cloudphp_start_files/cloudphp/index.php",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/KingDevickTestGenerator.py",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/webapp.py",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/static/speech.js",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/page.html",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/static/style.css",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/templates/visual_test.html",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/templates/ho.html",
+		"/C/Users/claud/Documents/00 Practical Essentials and Backups/Minnehack-Hack/templates/reading_test.html",
+		"/E/Programming Archives/CS 300 - Clientside Web Dev/cs300Project2/css/main.css",
+		"/E/Programming Archives/CS 300 - Clientside Web Dev/cs300Project2/index.html",
+		"/E/Programming Archives/CS 300 - Clientside Web Dev/cs300Project2/about.html",
+		"/E/Programming Archives/CS 300 - Clientside Web Dev/gamemakerclub/resources.html",
+		"/E/Programming Archives/CS 300 - Clientside Web Dev/gamemakerclub/gamemakerclub.html"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"test",
+			">\n",
+			"fucking"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "claudesublime.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
