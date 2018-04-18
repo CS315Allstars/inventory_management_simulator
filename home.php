@@ -3,6 +3,7 @@
   $_SESSION['table']='party';
   $_SESSION['condi']='';
   $_SESSION['rows']='partyName';
+  $_SESSION['queryid']="";
   //echo $_SESSION['table'];
   //echo $_SESSION['condi'];
 ?>

@@ -1,10 +1,10 @@
 <?php
   session_start();
   $_SESSION['table']='characters';
-  $sessionPartyID=$_GET['id'];
+  //$sessionPartyID=$_GET['id'];
   $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
-  $_SESSION['rows']='charName,partyID,accID';
-  //echo $sessionPartyID;
+  $_SESSION['rows']='charName,accID,partyID';
+  $_SESSION['queryid']=",".$_GET['id'];
   //echo $_SESSION['table'];
   //echo $_SESSION['condi'];
 ?>
@@ -27,7 +27,7 @@
         }
       });
       $("#saveitem").click(function(){
-        var Name=$("#name").val();
+        var Name=$("#name").val()+"','"+$("#account").val();
         var item={
           vName : Name,
 
@@ -57,7 +57,8 @@
         <h2>Add New Character</h2>
         <label>Character Name:</label>
         <input type="text" id="name"/><br>
-
+        <label>Account number:</label>
+        <input type="text" id="account"/><br>
         <input type="button" id="saveitem" value="Save Item"/>
       </div>
   </body>

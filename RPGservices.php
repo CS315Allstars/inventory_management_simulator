@@ -29,7 +29,7 @@
   else if($method=="POST"){
 
     $name=$_POST['vName'];
-    $sql_insert="INSERT INTO ".$_SESSION['table']."(".$_SESSION['rows'].") VALUES ('$name')";
+    $sql_insert="INSERT INTO ".$_SESSION['table']."(".$_SESSION['rows'].") VALUES ('$name'".$_SESSION['queryid'].")";
     if(mysqli_query($conn,$sql_insert)){
       echo "Items succesfully added to the database.";
     }
