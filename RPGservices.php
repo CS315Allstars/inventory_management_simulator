@@ -11,8 +11,6 @@
   }
   $method=$_SERVER['REQUEST_METHOD'];
   if($method=="GET"){
-    //$colm=$_GET['colm'];
-    //$tabl=$_GET['tabl']
     $sql="SELECT * FROM ".$_SESSION['table'].$_SESSION['condi'];
     $result=mysqli_query($conn,$sql);
     $rows=array();

@@ -1,12 +1,9 @@
 <?php
   session_start();
   $_SESSION['table']='characters';
-  //$sessionPartyID=$_GET['id'];
   $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
   $_SESSION['rows']='charName,accID,partyID';
   $_SESSION['queryid']=",".$_GET['id'];
-  //echo $_SESSION['table'];
-  //echo $_SESSION['condi'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,8 +17,11 @@
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
           var party="ID: "+allParties[i].charID
-            +" | Name: "+allParties[i].charName;
-
+            +" | Name: "+allParties[i].charName
+            +"<?php $_SESSION['id']="+allParties[i].charID
+            +";?> <form method='get' action='items.php'><input type='hidden' name='id' value="
+            +allParties[i].charID
+            +"><input type='submit' value='List of items'></form> ";
           party="<li>"+party+"</li>";
           $("#myitems").append(party);
         }
@@ -38,7 +38,6 @@
       });
     });
     </script>
-
   </head>
   <body>
     <div>

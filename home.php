@@ -23,7 +23,7 @@
             +"<?php $_SESSION['id']="+allParties[i].partyID
             +";?> <form method='get' action='characters.php'><input type='hidden' name='id' value="
             +allParties[i].partyID
-            +"><input type='submit'></form> ";
+            +"><input type='submit' value='List of Characters'></form> ";
           party="<li>"+party+"</li>";
           $("#myitems").append(party);
         }
