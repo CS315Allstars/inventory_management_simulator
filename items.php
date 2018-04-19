@@ -16,16 +16,17 @@
         console.log(data);
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
-          var party="ID: "+allParties[i].itemID
-            +" | Name: "+allParties[i].itemName
-            +" | Weight: "+allParties[i].itemWeight
-            +" | Value: "+allParties[i].itemValue
-            +" | Type: "+allParties[i].itemType
-            +" | Belongs To: "+allParties[i].charID
+          var party="<td>ID: "+allParties[i].itemID
+            +"</td><td>Name: "+allParties[i].itemName
+            +"</td><td>Weight: "+allParties[i].itemWeight
+            +"</td><td>Value: "+allParties[i].itemValue
+            +"</td><td>Type: "+allParties[i].itemType
+            +"</td><td>Belongs To: "+allParties[i].charID
+            +"</td>"
             ;
 
-          party="<li>"+party+"</li>";
-          $("#myitems").append(party);
+          party="<tr>"+party+"</tr>";
+          $("#myitemstable").append(party);
         }
       });
       $("#saveitem").click(function(){
@@ -43,20 +44,24 @@
   </head>
   <body>
     <div>
-      <?php $_SESSION['id']=$_GET['id'];
-      echo $_GET['id'];
-      ?>
-      <form method='get' action='characters.php'>
-        <input type='hidden' name='id' value='<?php $_GET['id'] ?>'>
-        <input type='submit' value='List of Items'>
-      </form>
       <a href="home.php">Back to party list</a>
-      <a href="characters.php">Back to character list</a>
     </div>
+
     <div>
       <h1>Items belonging to charID <? echo $_GET['id'];?></h1>
       <ul id="myitems"></ul>
+      <table id='myitemstable' style='width:100%; text-align:center;' border='2px'>
+        <tr>
+          <th>Item ID</th>
+          <th>Name</th>
+          <th>Weight</th>
+          <th>Value</th>
+          <th>Type</th>
+          <th>Owner</th>
+        </tr>
+      </table>
     </div>
+
     <div>
       <h2>Add New Item To Character <? echo $_GET['id'];?></h2>
       <label>Item Name:</label>
