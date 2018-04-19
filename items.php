@@ -2,7 +2,7 @@
   session_start();
   $_SESSION['table']='items';
   $_SESSION['condi']=' WHERE charID='.$_GET['id'];
-  $_SESSION['rows']='itemName,itemWeight,itemValue,itemType';
+  $_SESSION['rows']='itemName,itemWeight,itemValue,itemType,charID';
   $_SESSION['queryid']=",".$_GET['id'];
 ?>
 <!DOCTYPE html>
@@ -17,14 +17,19 @@
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
           var party="ID: "+allParties[i].itemID
-            +" | Name: "+allParties[i].itemName;
+            +" | Name: "+allParties[i].itemName
+            +" | Weight: "+allParties[i].itemWeight
+            +" | Value: "+allParties[i].itemValue
+            +" | Type: "+allParties[i].itemType
+            +" | Belongs To: "+allParties[i].charID
+            ;
 
           party="<li>"+party+"</li>";
           $("#myitems").append(party);
         }
       });
       $("#saveitem").click(function(){
-        var Name=$("#name").val()+"','"+$("#account").val();
+        var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
         var item={
           vName : Name,
 

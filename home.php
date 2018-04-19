@@ -4,8 +4,8 @@
   $_SESSION['condi']='';
   $_SESSION['rows']='partyName';
   $_SESSION['queryid']="";
-  //echo $_SESSION['table'];
-  //echo $_SESSION['condi'];
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,14 +18,17 @@
         console.log(data);
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
-          var party="ID: "+allParties[i].partyID
-            +" | Name: "+allParties[i].partyName
-            +"<?php $_SESSION['id']="+allParties[i].partyID
+
+
+          var party="<td>"+allParties[i].partyID
+            +"</td><td>"+allParties[i].partyName
+            +"</td><td><?php $_SESSION['id']="+allParties[i].partyID
             +";?> <form method='get' action='characters.php'><input type='hidden' name='id' value="
             +allParties[i].partyID
-            +"><input type='submit' value='List of Characters'></form> ";
-          party="<li>"+party+"</li>";
-          $("#myitems").append(party);
+            +"><input type='submit' value='List of Characters'></form></td> ";
+
+          party="<tr>"+party+"</tr>";
+          $("#myitemstable").append(party);
         }
       });
       $("#saveitem").click(function(){
@@ -43,10 +46,24 @@
 
   </head>
   <body>
+    <div>
+      <form method="post" action="RPGservices.php">
+        Username: <input type="text" name="uNameBox">
+        Password: <input type="password" name="pWordBox">
+        <input type="submit">
+      </form>
 
+    </div>
     <div>
       <h1>RPG Party </h1>
       <ul id="myitems"></ul>
+      <table id='myitemstable'>
+        <tr>
+          <th>Party ID</th>
+          <th>Name</th>
+        </tr>
+
+      </table>
     </div>
     <div>
 

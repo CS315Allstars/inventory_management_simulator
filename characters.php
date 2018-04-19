@@ -50,6 +50,13 @@
       <div>
         <h1>RPG Party <? echo $_GET['id'];?></h1>
         <ul id="myitems"></ul>
+        <table id='myitemstable'>
+          <tr>
+            <th>Party ID</th>
+            <th>Name</th>
+          </tr>
+
+        </table>
       </div>
       <div>
 
