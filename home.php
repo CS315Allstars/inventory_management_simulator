@@ -21,7 +21,7 @@
             +";?> <form method='get' action='characters.php'><input  name='id' type='hidden' value="
             +allParties[i].partyID
             +"><input type='submit' value='List of Characters'></form></td><td><input type='button'  class='deleteBtn' id='"+allParties[i].partyID+"' value='Delete'></td> ";
-          party="<tr>"+party+"</tr>";
+          party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
       });
@@ -34,6 +34,7 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
+        //$("home.php").load("home.php");
       });
       
       $("#shit").click(function(){
@@ -52,11 +53,12 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
+        $("#bodytag").load("home.php ");
       });
     });
     </script>
   </head>
-  <body>
+  <body id='bodytag'>
     <div>
       <input type='button'  class='deleteBtn' id='222' value='Delete'>
       <form method="post" action="RPGservices.php">
@@ -67,7 +69,7 @@
       <input type='text' id='test' value='fdsdf'>
       <input type='button' id="shit" value="Fuck jquerywhyisnothingworking">
     </div>
-    <div>
+    <div id='tableinfo'>
       <h1>RPG Party </h1>
       <ul id="myitems"></ul>
       <table id='myitemstable'style='width:60%; text-align:center;' border='2px'>

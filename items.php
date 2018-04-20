@@ -16,18 +16,26 @@
         console.log(data);
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
-          var party="<td>ID: "+allParties[i].itemID
-            +"</td><td>Name: "+allParties[i].itemName
-            +"</td><td>Weight: "+allParties[i].itemWeight
-            +"</td><td>Value: "+allParties[i].itemValue
-            +"</td><td>Type: "+allParties[i].itemType
-            +"</td><td>Belongs To: "+allParties[i].charID
-            +"</td>"
-            ;
-
+          var party="<td>"+allParties[i].itemID
+            +"</td><td>"+allParties[i].itemName
+            +"</td><td>"+allParties[i].itemWeight
+            +"</td><td>"+allParties[i].itemValue
+            +"</td><td>"+allParties[i].itemType
+            +"</td><td>"+allParties[i].charID
+            +"</td><td><input type='button'  class='deleteBtn' id='"+allParties[i].itemID+"' value='Delete'></td>";           
           party="<tr>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
+      });
+      $('body').on('click', 'input.deleteBtn', function() {   
+        var shit="DELETE FROM items WHERE itemID="+this.id+";";
+        var item={
+          vName : shit,
+        };
+        console.log(item);
+        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+          console.log(data);
+        });
       });
       $("#saveitem").click(function(){
         var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
@@ -50,7 +58,7 @@
     <div>
       <h1>Items belonging to charID <? echo $_GET['id'];?></h1>
       <ul id="myitems"></ul>
-      <table id='myitemstable' style='width:100%; text-align:center;' border='2px'>
+      <table id='myitemstable' style='width:50%; text-align:center;' border='2px'>
         <tr>
           <th>Item ID</th>
           <th>Name</th>
