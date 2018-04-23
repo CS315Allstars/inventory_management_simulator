@@ -23,7 +23,7 @@
             +"</td><td>"+allParties[i].itemType
             +"</td><td>"+allParties[i].charID
             +"</td><td><input type='button'  class='deleteBtn' id='"+allParties[i].itemID+"' value='Delete'></td>";           
-          party="<tr>"+party+"</tr>";
+          party="<tr id='"+allParties[i].itemID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
       });
@@ -36,9 +36,11 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
+        document.getElementById(""+this.id+"").style.visibility='hidden';
       });
       $("#saveitem").click(function(){
-        var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
+        var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id'] ?>')";
+        //var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
         var item={
           vName : Name,
 
@@ -46,11 +48,12 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
+        $("#myitemstable").load("items.php ");
       });
     });
     </script>
   </head>
-  <body>
+  <body id='bodytag'>
     <div>
       <a href="home.php">Back to party list</a>
     </div>

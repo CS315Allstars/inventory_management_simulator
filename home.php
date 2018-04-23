@@ -8,7 +8,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Characters</title>
+    <title> Parties</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>$(document).ready(function(){
       $.get("RPGservices.php",function(data,status){
@@ -34,7 +34,8 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
-        //$("home.php").load("home.php");
+        //document.getElementById(""+this.id+"").style.visibility='hidden';
+        document.getElementById(""+this.id+"").remove();
       });
       
       $("#shit").click(function(){
@@ -59,15 +60,12 @@
     </script>
   </head>
   <body id='bodytag'>
-    <div>
-      <input type='button'  class='deleteBtn' id='222' value='Delete'>
+    <div>   
       <form method="post" action="RPGservices.php">
         Username: <input type="text" name="uNameBox">
         Password: <input type="password" name="pWordBox">
         <input type="submit">
       </form>
-      <input type='text' id='test' value='fdsdf'>
-      <input type='button' id="shit" value="Fuck jquerywhyisnothingworking">
     </div>
     <div id='tableinfo'>
       <h1>RPG Party </h1>
@@ -77,13 +75,14 @@
           <th>Party ID</th>
           <th>Name</th>
         </tr>
+        <tr>
+          <td></td>
+          <td><input type="text" id="name"/></td>
+          <td><input type="button" id="saveitem" value="Save Item"/></td>
+          <td></td>
+        </tr>
       </table>
     </div>
-    <div>
-      <h2>Add New Party</h2>
-      <label>Item Name:</label>
-      <input type="text" id="name"/><br>
-      <input type="button" id="saveitem" value="Save Item"/>
-    </div>
+    
   </body>
 </html>

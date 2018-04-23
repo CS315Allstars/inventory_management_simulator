@@ -35,6 +35,7 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
+        document.getElementById(""+this.id+"").remove();
       });
       $("#saveitem").click(function(){
         var Name="INSERT INTO characters (charName,accID, partyID) VALUES ('"+$('#name').val()+"','"+$("#account").val()+"','<?php echo $_GET['id']?>');";
@@ -45,6 +46,7 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
+        $().load("characters.php ");
       });
     });
     </script>
