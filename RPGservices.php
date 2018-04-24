@@ -11,6 +11,8 @@
   }
   $method=$_SERVER['REQUEST_METHOD'];
   if($method=="GET"){
+    // displays all of table
+    // loads all the entries from the DB into the PHP file
     $sql="SELECT * FROM ".$_SESSION['table'].$_SESSION['condi'];
     $result=mysqli_query($conn,$sql);
     $rows=array();
