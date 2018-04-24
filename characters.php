@@ -1,7 +1,8 @@
 <?php
   session_start();
   $_SESSION['table']='characters';
-  //$_SESSION['condi']=' WHERE partyID='.$_GET['id'];
+  
+  $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
   //$_SESSION['rows']='charName,accID,partyID';
   //$_SESSION['queryid']=",".$_GET['id'];
 ?>
@@ -46,21 +47,21 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
-        $("#bodytag").load("characters.php ");
+        $("#bodytag2").load("characters.php ");
       });
     });
     </script>
   </head>
-  <body id='bodytag'>
+  <body id='bodytag2'>
     <div>
       <p><a href="home.php">Back to party list</a>
       </div>
       <div>
-        <h1>RPG Party <? echo $_GET['id'];?></h1>
+        <h1>Characters in Party <? echo $_GET['id'];?></h1>
         <ul id="myitems"></ul>
         <table id='myitemstable'style='width:800px; text-align:center;' border='2px'>
           <tr>
-            <th>Party ID</th>
+            <th>Character ID</th>
             <th>Name</th>
           </tr>
         </table>
