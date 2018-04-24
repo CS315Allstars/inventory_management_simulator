@@ -17,8 +17,8 @@
         for(var i=0;i<allParties.length;i++){
           var party="<td>"+allParties[i].partyID
             +"</td><td>"+allParties[i].partyName
-            +"</td><td><?php $_SESSION['id']="+allParties[i].partyID
-            +";?> <form method='get' action='characters.php'><input  name='id' type='hidden' value="
+            +"</td><td><? $_SESSION['id']="+allParties[i].partyID
+            +"?> <form method='get' action='characters.php'><input  name='id' type='hidden' value="
             +allParties[i].partyID
             +"><input type='submit' value='List of Characters'></form></td><td><input type='button'  class='deleteBtn' id='"+allParties[i].partyID+"' value='Delete'></td> ";
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
@@ -68,7 +68,7 @@
       </form>
     </div>
     <div id='tableinfo'>
-      <h1>RPG Party </h1>
+      <h1>RPG Parties </h1>
       <ul id="myitems"></ul>
       <table id='myitemstable'style='width:60%; text-align:center;' border='2px'>
         <tr>

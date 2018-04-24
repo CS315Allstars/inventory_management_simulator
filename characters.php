@@ -1,8 +1,9 @@
 <?php
   session_start();
   $_SESSION['table']='characters';
-  
-  $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
+  $testThing=$_GET['id'];
+  echo $testThing;
+  $_SESSION['condi']=' WHERE partyID='.$testThing;
   //$_SESSION['rows']='charName,accID,partyID';
   //$_SESSION['queryid']=",".$_GET['id'];
 ?>
@@ -23,7 +24,7 @@
             +";?> <form method='get' action='items.php'><input type='hidden' name='id' value="
             +allParties[i].charID
             +"><input type='submit' value='List of items'></form></td><td><input type='button'  class='deleteBtn' id='"+allParties[i].charID+"' value='Delete'></td>";
-          party="<tr>"+party+"</tr>";
+          party="<tr id='"+allParties[i].charID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
       });
