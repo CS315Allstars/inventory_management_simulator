@@ -13,8 +13,14 @@
   <head>
     <title> Characters</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<<<<<<< HEAD
     <script>$(document).ready(function(){     
       $.get("RPGservices.php",function(data,status){     
+=======
+    <script>$(document).ready(function(){
+      //loads the page/creates the table
+      $.get("RPGservices.php",function(data,status){
+>>>>>>> origin/marco
         console.log(data);
         var allParties=JSON.parse(data);       
         for(var i=0;i<allParties.length;i++){
