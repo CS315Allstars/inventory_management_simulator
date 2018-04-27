@@ -11,8 +11,9 @@
   }
   $method=$_SERVER['REQUEST_METHOD'];
   if($method=="GET"){
-    $sql="SELECT * FROM ".$_SESSION['table'].$_SESSION['condi'];
-    $result=mysqli_query($conn,$sql);
+    //$sql="SELECT * FROM ".$_SESSION['table'].$_SESSION['condi'];
+
+    $result=mysqli_query($conn,$_SESSION['query']);
     $rows=array();
     if(mysqli_num_rows($result)>0){
       while($r=mysqli_fetch_assoc($result)){
@@ -20,22 +21,43 @@
       }
       print json_encode($rows);
     }else{
-      echo "No data";
+      echo "<p>Nfdso data</p>";
     }
   }
 
   else if($method=="POST"){
-    echo $_POST['vName'];
-    //$name=$_POST['vName'];
-    //$sql_insert="INSERT INTO ".$_SESSION['table']."(".$_SESSION['rows'].") VALUES ('$name'".$_SESSION['queryid'].")";
     $sql_insert=$_POST['vName'];
-
-    if(mysqli_query($conn,$sql_insert)){
-      echo "Items succesfully added to the database.";
+    //echo $sql_insert;
+    $result=mysqli_query($conn,$sql_insert);
+    
+    if(!$result){
+      //echo "YOUR QUERY IS FUCKED";
     }
+    if($result){
+      //echo "YOUR QUERY IS WORKING";
+    }
+    //echo $result;
+    //echo mysqli_num_rows($result);
+    if(substr($sql_insert,0,6)=='SELECT'){
+      //echo "not inserting into table";
+      if(mysqli_num_rows($result)>0){
+        while($row=mysqli_fetch_assoc($result)){
+          if(substr_count($sql_insert, "party")>0){
+            echo $row['partyName'];
+          }
+          elseif (substr_count($sql_insert, "characters")>0) {
+            echo $row['charName']; 
+          }
+          
+        } 
+      }
+    }
+    /*
     else{
-      echo " ERROR: $sql_insert did not run. ".mysqli_error($conn);
-    }
+      echo "whoops, youre a fuckhead";
+      //echo " ERROR: $sql_insert did not run. ".mysqli_error($conn);
+    }*/
+    
   }
 
   mysqli_close($conn);

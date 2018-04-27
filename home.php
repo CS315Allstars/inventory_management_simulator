@@ -2,6 +2,7 @@
   session_start();
   $_SESSION['table']='party';
   $_SESSION['condi']='';
+  $_SESSION['query']='SELECT * FROM party';
   $_SESSION['rows']='partyName';
   $_SESSION['queryid']="";
 ?>
@@ -17,10 +18,15 @@
         for(var i=0;i<allParties.length;i++){
           var party="<td>"+allParties[i].partyID
             +"</td><td>"+allParties[i].partyName
-            +"</td><td><? $_SESSION['id']="+allParties[i].partyID
-            +"?> <form method='get' action='characters.php'><input  name='id' type='hidden' value="
+            
+            +"</td><td><? $_SESSION['id']="
             +allParties[i].partyID
-            +"><input type='submit' value='List of Characters' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
+            +"; $_GET['partyName']="
+            +allParties[i].partyName
+            +"?><form method='get' action='characters.php'><input name='id' type='hidden' value='"
+            +allParties[i].partyID
+            +"'><input type='submit' value='List of Characters' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
+
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
@@ -66,7 +72,7 @@
       <form method="post" action="RPGservices.php">
         Username: <input type="text" name="uNameBox">
         Password: <input type="password" name="pWordBox">
-        <input class="button" type="submit">
+        <input class="button" type="submit" value="Log In">
       </form>
     </div>
     <div id='tablediv'>

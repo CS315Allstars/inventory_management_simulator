@@ -1,80 +1,93 @@
 <?php
   session_start();
   $_SESSION['table']='characters';
-  $testThing=$_GET['id'];
-  echo $testThing;
-  $_SESSION['condi']=' WHERE partyID='.$testThing;
-  //$_SESSION['rows']='charName,accID,partyID';
-  //$_SESSION['queryid']=",".$_GET['id'];
+  $_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_GET['id'];
+  $_SESSION['id']=$_GET['id'];
+  //echo $testThing;
+  $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
+  //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_SESSION['id'];
+
 ?>
 <!DOCTYPE html>
 <html>
   <head>
     <title> Characters</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>$(document).ready(function(){
-
-      $.get("RPGservices.php",function(data,status){
+    <script>$(document).ready(function(){     
+      $.get("RPGservices.php",function(data,status){     
         console.log(data);
-        var allParties=JSON.parse(data);
+        var allParties=JSON.parse(data);       
         for(var i=0;i<allParties.length;i++){
           var party="<td>"+allParties[i].charID
             +"</td><td>"+allParties[i].charName
-            +"</td><td><?php $_SESSION['id']="+allParties[i].charID
-            +";?> <form method='get' action='items.php'><input type='hidden' name='id' value="
+            +"</td><td><?php $_SESSION['id']='allParties[i].charID'
+            ;?> <form method='get' action='items.php'><input type='hidden' name='id' value="
             +allParties[i].charID
             +"><input type='submit' value='List of items'></form></td><td><input type='button'  class='deleteBtn' id='"+allParties[i].charID+"' value='Delete'></td>";
           party="<tr id='"+allParties[i].charID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
-      });
-      $('body').on('click', 'input.deleteBtn', function() {   
-        var shit="DELETE FROM characters WHERE charID="+this.id+";";
+        //$("#header").text("Characters In Party "+allParties[0].partyID);
+        var moreshit="SELECT partyName FROM party WHERE partyID='"+allParties[0].partyID+"';";
         var item={
-          vName : shit,
+          vName : moreshit,
         };
         console.log(item);
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
-          console.log(data);
+          $("#header").text("Characters in "+data);
+          $("#header2").text("Add new character to "+data);
         });
-        document.getElementById(""+this.id+"").remove();
       });
+
+      $('body').on('click', 'input.deleteBtn', function() {   
+        var shit="DELETE FROM characters WHERE charID="+this.id;
+        var item3={
+          vName : shit, 
+        };
+        console.log(item3);
+        $.post("http://127.0.0.1/services/RPGservices.php",item3,function(data){
+        });
+        document.getElementById(this.id).remove();
+      });
+
       $("#saveitem").click(function(){
-        var Name="INSERT INTO characters (charName,accID, partyID) VALUES ('"+$('#name').val()+"','"+$("#account").val()+"','<?php echo $_GET['id']?>');";
-        //var Name=$("#name").val()+"','"+$("#account").val();
-        var item={
+        var Name="INSERT INTO characters (charName,accID, partyID) VALUES (\'"+$('#name').val()+"\',"+$('#account').val()+",<? echo $_GET['id']?>)";
+        console.log(Name);
+        var item2={
           vName : Name,
         };
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
-          console.log(data);
+        $.post("http://127.0.0.1/services/RPGservices.php",item2,function(data){
+          console.log(data+"gdfgdf");
+          $("#bodytag2").load(location.href );
         });
-        $("#bodytag2").load("characters.php ");
+        //'<?$_SESSION['id'] = $_GET['id']?>';
+        
       });
     });
     </script>
   </head>
   <body id='bodytag2'>
     <div>
-      <p><a href="home.php">Back to party list</a>
-      </div>
-      <div>
-        <h1>Characters in Party <? echo $_GET['id'];?></h1>
-        <ul id="myitems"></ul>
-        <table id='myitemstable'style='width:800px; text-align:center;' border='2px'>
-          <tr>
-            <th>Character ID</th>
-            <th>Name</th>
-          </tr>
-        </table>
-      </div>
-      <div>
-
-        <h2>Add New Character</h2>
-        <label>Character Name:</label>
-        <input type="text" id="name"/><br>
-        <label>Account number:</label>
-        <input type="text" id="account"/><br>
-        <input type="button" id="saveitem" value="Save Item"/>
-      </div>
+      <p><a href="home.php">Back to party list</a></p>
+    </div>
+    <div id='mydiv'>
+      
+      <h1 id='header'></h1>     
+      <ul id="myitems"></ul>
+      <table id='myitemstable'style='width:800px; text-align:center;' border='2px'>
+        <tr>
+          <th>Character ID</th>
+          <th>Name</th>
+        </tr>
+      </table>
+    </div>
+    <div>
+      <h2 id='header2'></h2>
+      <label>Character Name:</label>
+      <input type="text" id="name"/><br>
+      <label>Account number:</label>
+      <input type="text" id="account"/><br>
+      <input type="button" id="saveitem" value="Save Item"/>
+    </div>
   </body>
 </html>

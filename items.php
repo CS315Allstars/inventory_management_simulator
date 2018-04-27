@@ -1,9 +1,8 @@
 <?php
   session_start();
   $_SESSION['table']='items';
-  $_SESSION['condi']=' WHERE charID='.$_GET['id'];
+  $_SESSION['query']='SELECT * FROM items WHERE charID='.$_GET['id'];
   $_SESSION['rows']='itemName,itemWeight,itemValue,itemType,charID';
-  $_SESSION['queryid']=",".$_GET['id'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -26,7 +25,17 @@
           party="<tr id='"+allParties[i].itemID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
+        var charQuery="SELECT charName FROM characters WHERE charID='"+allParties[0].charID+"';";
+        var item={
+          vName : charQuery,
+        };
+        console.log(item);
+        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+          $("#header").text("Items belonging to "+data);
+          $("#header2").text("Add new item for character "+data);
+        });
       });
+
       $('body').on('click', 'input.deleteBtn', function() {   
         var shit="DELETE FROM items WHERE itemID="+this.id+";";
         var item={
@@ -36,7 +45,7 @@
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
           console.log(data);
         });
-        document.getElementById(""+this.id+"").style.visibility='hidden';
+        document.getElementById(this.id).remove();
       });
       $("#saveitem").click(function(){
         var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id'] ?>')";
@@ -45,10 +54,12 @@
           vName : Name,
 
         };
+        console.log(Name);
         $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
-          console.log(data);
+          console.log(data+"inserttabledatalog");
+          $("#bodytag").load(location.href );
         });
-        $("#myitemstable").load("items.php ");
+        //$("#myitemstable").load("items.php ");
       });
     });
     </script>
@@ -59,7 +70,8 @@
     </div>
 
     <div>
-      <h1>Items belonging to charID <? echo $_GET['id'];?></h1>
+      <h1 id='header'></h1>
+      
       <ul id="myitems"></ul>
       <table id='myitemstable' style='width:50%; text-align:center;' border='2px'>
         <tr>
@@ -74,7 +86,7 @@
     </div>
 
     <div>
-      <h2>Add New Item To Character <? echo $_GET['id'];?></h2>
+      <h2 id='header2'>Add New Item To Character </h2>
       <label>Item Name:</label>
       <input type="text" id="name"/><br>
       <label>Item Weight:</label>
