@@ -11,16 +11,9 @@
   }
   $method=$_SERVER['REQUEST_METHOD'];
   if($method=="GET"){
-<<<<<<< HEAD
     //$sql="SELECT * FROM ".$_SESSION['table'].$_SESSION['condi'];
 
     $result=mysqli_query($conn,$_SESSION['query']);
-=======
-    // displays all of table
-    // loads all the entries from the DB into the PHP file
-    $sql="SELECT * FROM ".$_SESSION['table'].$_SESSION['condi'];
-    $result=mysqli_query($conn,$sql);
->>>>>>> origin/marco
     $rows=array();
     if(mysqli_num_rows($result)>0){
       while($r=mysqli_fetch_assoc($result)){

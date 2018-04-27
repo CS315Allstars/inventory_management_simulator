@@ -3,7 +3,6 @@
   $_SESSION['table']='items';
   $_SESSION['query']='SELECT * FROM items WHERE charID='.$_GET['id'];
   $_SESSION['rows']='itemName,itemWeight,itemValue,itemType,charID';
-  //$_SESSION['queryid']=",".$_GET['id'];
 ?>
 <!DOCTYPE html>
 <html>
