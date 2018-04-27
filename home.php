@@ -68,29 +68,35 @@
     <link href="css/home.css" rel="stylesheet" type="text/css" media="screen"/>
   </head>
   <body id='bodytag'>
-    <div id="logindiv">   
-      <form method="post" action="RPGservices.php">
-        Username: <input type="text" name="uNameBox">
-        Password: <input type="password" name="pWordBox">
-        <input class="button" type="submit" value="Log In">
-      </form>
-    </div>
-    <div id='tablediv'>
-      <h1>RPG Parties </h1>
-      <ul id="myitems"></ul>
-      <table id='myitemstable'>
-        <tr>
-          <th>Party ID</th>
-          <th>Name</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td><input type="text" id="name"/></td>
-          <td><input type="button" id="saveitem" class="button" value="Save Item"/></td>
-          <td></td>
-        </tr>
-      </table>
-    </div>
+
+    <div id="display">
+      <div id="logindiv">
+        <h1>Inventory Management Simulator 2018</h1>
+
+        <form method="post" action="RPGservices.php">
+          Username: <input type="text" name="uNameBox">
+          Password: <input type="password" name="pWordBox">
+          <input class="button" type="submit" value="Log In">
+        </form>
+      </div>
+      <div id='tablediv'>
+        <h1>Current Parties </h1>
+        <ul id="myitems"></ul>
+        <table id='myitemstable'>
+          <tr>
+            <th>Party ID</th>
+            <th>Name</th>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="text" id="name"/></td>
+            <td><input type="button" id="saveitem" class="button" value="Save Item"/></td>
+            <td></td>
+          </tr>
+        </table>
+
+        <p>Created By: Robert Velazquez, Claudiu Moise (TR),  Marco Cortes </p>
+      </div>
     
   </body>
 </html>
