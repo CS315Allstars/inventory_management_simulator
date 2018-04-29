@@ -1,5 +1,10 @@
 <?php
   session_start();
+
+  //Allows CORS
+  //
+  header("Access-Control-Allow-Origin: *");
+
   $url='localhost';
   $database='RPGtracker';
   $username='root' ;
@@ -26,6 +31,7 @@
   }
 
   else if($method=="POST"){
+    //defining insert method
     $sql_insert=$_POST['vName'];
     //echo $sql_insert;
     $result=mysqli_query($conn,$sql_insert);

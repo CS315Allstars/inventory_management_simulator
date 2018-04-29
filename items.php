@@ -9,8 +9,8 @@
   <head>
     <title> Items</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>$(document).ready(function(){
-
+    <script>      
+      $(document).ready(function(){
       $.get("RPGservices.php",function(data,status){
         console.log(data);
         var allParties=JSON.parse(data);
@@ -21,7 +21,7 @@
             +"</td><td>"+allParties[i].itemValue
             +"</td><td>"+allParties[i].itemType
             +"</td><td>"+allParties[i].charID
-            +"</td><td><input type='button'  class='deleteBtn button'"+allParties[i].itemID+"' value='Delete'></td>";           
+            +"</td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].itemID+"' value='Delete'></td>";           
           party="<tr id='"+allParties[i].itemID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
