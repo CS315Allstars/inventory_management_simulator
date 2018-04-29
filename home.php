@@ -101,17 +101,18 @@
 
 
 
-        <p>Created By: Robert Velazquez, Claudiu Moise (TR),  Marco Cortes </p>
+        
       </div>
 
       <div id='actionmenuwrapper'>
         <div id='actionmenu'>
           <h1>Action Menu</h1>
           <label>Add a new Party</label>
-          <input type="text" id="name"/ class="tbox">
+          <input type="text" id="name" class="tbox"/>
           <input type="button" id="saveitem" class="button" value="Create Party"/>
         </div>
       </div>
     
+      <p style="text-align: center;">Created By: Robert Velazquez, Claudiu Moise (TR),  Marco Cortes </p>
   </body>
 </html>
