@@ -63,17 +63,19 @@
       });
     });
     </script>
+
+    <link href="css/home.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
   </head>
   <body id='bodytag'>
-    <div>
+    <div class="backlink">
       <a href="home.php">Back to party list</a>
     </div>
 
-    <div>
+    <div id='tablediv'>
       <h1 id='header'></h1>
       
-      <ul id="myitems"></ul>
-      <table id='myitemstable' style='width:50%; text-align:center;' border='2px'>
+      <table id='myitemstable'>
         <tr>
           <th>Item ID</th>
           <th>Name</th>
