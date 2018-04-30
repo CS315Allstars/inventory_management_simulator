@@ -25,6 +25,7 @@
             +allParties[i].partyName
             +"?><form method='get' action='characters.php'><input name='id' type='hidden' value='"
             +allParties[i].partyID
+
             +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
 
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
@@ -64,6 +65,7 @@
       });
     });
     </script>
+
 
     <link href="css/home.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
