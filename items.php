@@ -48,15 +48,16 @@
         document.getElementById(this.id).remove();
       });
       $("#saveitem").click(function(){
-        var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id'] ?>')";
+        var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id']?>')";
         //var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
         var item={
           vName : Name,
 
         };
         console.log(Name);
-        $.post("http://127.0.0.1/services/inventoty/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data+"inserttabledatalog");
+          //refreshes page automatically after being added
           $("#bodytag").load(location.href );
         });
         //$("#myitemstable").load("items.php ");
@@ -72,6 +73,8 @@
       <div class="backlink">
         <a href="home.php">Back to party list</a>
       </div>
+
+      <p><?php echo $_GET['id']?></p>
 
       <div id='tablediv'>
         <h1 id='header'></h1>

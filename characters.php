@@ -50,7 +50,7 @@
       });
 
       $("#saveitem").click(function(){
-        var Name="INSERT INTO characters (charName,accID, partyID) VALUES (\'"+$('#name').val()+"\',"+$('#account').val()+",<? echo $_GET['id']?>)";
+        var Name="INSERT INTO characters (charName,accID, partyID) VALUES (\'"+$('#name').val()+"\',"+$('#account').val()+",<?php echo $_GET['id']?>)";
         console.log(Name);
         var item2={
           vName : Name,
@@ -70,10 +70,14 @@
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
   </head>
   <body id='bodytag2'>
+
+
     <div id="display">
       <div class="backlink">
         <a href="home.php">Back to party list</a>
       </div>
+
+      <p><?php echo $_GET['id'] ?></p>  
       <div id='tablediv'>
         <table id='myitemstable'>
           <tr>

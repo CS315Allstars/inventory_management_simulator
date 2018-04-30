@@ -81,6 +81,8 @@
         </form>
       </div>
 
+      
+
       <div id='tablediv'>
         <h1>Current Parties </h1>
         <ul id="myitems"></ul>
@@ -100,8 +102,6 @@
         </table>
 
 
-
-        
       </div>
 
       <div id='actionmenuwrapper'>
