@@ -1,11 +1,10 @@
 <?php
   session_start();
-  $_SESSION['table']='characters';
   $_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_GET['id'];
-  $_SESSION['id']=$_GET['id'];
   //echo $testThing;
   $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
   //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_SESSION['id'];
+  $sessionPartyID=$_GET['id'];
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +22,7 @@
             +"</td><td><?php $_SESSION['id']='allParties[i].charID'
             ;?> <form method='get' action='items.php'><input type='hidden' name='id' value="
             +allParties[i].charID
-            +"><input type='submit' value='List of items'></form></td><td><input type='button'  class='deleteBtn' id='"+allParties[i].charID+"' value='Delete'></td>";
+            +"><input type='submit' value='Show Character Items' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].charID+"' value='Delete'></td>";
           party="<tr id='"+allParties[i].charID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
@@ -62,32 +61,40 @@
         });
         //'<?$_SESSION['id'] = $_GET['id']?>';
         
+
       });
     });
     </script>
+
+    <link href="css/home.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
   </head>
   <body id='bodytag2'>
-    <div>
-      <p><a href="home.php">Back to party list</a></p>
+    <div id="display">
+      <div class="backlink">
+        <a href="home.php">Back to party list</a>
+      </div>
+      <div id='tablediv'>
+        <table id='myitemstable'>
+          <tr>
+            <th>Character ID</th>
+            <th>Name</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+          </tr>
+        </table>
+      </div>
+      <div id='actionmenuwrapper'>
+          <div id='actionmenu'>
+            <h1>Action Menu</h1>
+            <label>Character Name:</label>
+            <input class="tbox" type="text" id="name"/><br>
+            <label>Account number:</label>
+            <input class="tbox" type="text" id="account"/><br>
+            <input class="button" type="button" id="saveitem" value="Save Item"/>
+          </div>
+      </div>
     </div>
-    <div id='mydiv'>
-      
-      <h1 id='header'></h1>     
-      <ul id="myitems"></ul>
-      <table id='myitemstable'style='width:800px; text-align:center;' border='2px'>
-        <tr>
-          <th>Character ID</th>
-          <th>Name</th>
-        </tr>
-      </table>
-    </div>
-    <div>
-      <h2 id='header2'></h2>
-      <label>Character Name:</label>
-      <input type="text" id="name"/><br>
-      <label>Account number:</label>
-      <input type="text" id="account"/><br>
-      <input type="button" id="saveitem" value="Save Item"/>
-    </div>
+
   </body>
 </html>

@@ -25,7 +25,9 @@
             +allParties[i].partyName
             +"?><form method='get' action='characters.php'><input name='id' type='hidden' value='"
             +allParties[i].partyID
-            +"'><input type='submit' value='List of Characters'></form></td><td><input type='button'  class='deleteBtn' id='"+allParties[i].partyID+"' value='Delete'></td> ";
+
+            +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
+
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
@@ -63,31 +65,56 @@
       });
     });
     </script>
+
+
+    <link href="css/home.css" rel="stylesheet" type="text/css" media="screen"/>
+    <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
   </head>
   <body id='bodytag'>
-    <div>   
-      <form method="post" action="RPGservices.php">
-        Username: <input type="text" name="uNameBox">
-        Password: <input type="password" name="pWordBox">
-        <input type="submit" value="Log In">
-      </form>
-    </div>
-    <div id='tableinfo'>
-      <h1>RPG Parties </h1>
-      <ul id="myitems"></ul>
-      <table id='myitemstable'style='width:60%; text-align:center;' border='2px'>
-        <tr>
-          <th>Party ID</th>
-          <th>Name</th>
-        </tr>
-        <tr>
-          <td></td>
-          <td><input type="text" id="name"/></td>
-          <td><input type="button" id="saveitem" value="Save Item"/></td>
-          <td></td>
-        </tr>
-      </table>
-    </div>
+
+    <div id="display">
+      <div id="logindiv">
+        <h1>Inventory Management Simulator 2018</h1>
+
+        <form method="post" action="RPGservices.php">
+          Username: <input type="text" name="uNameBox" class="tbox">
+          Password: <input type="password" name="pWordBox" class="tbox">
+          <input class="button" type="submit" value="Log In">
+        </form>
+      </div>
+
+      <div id='tablediv'>
+        <h1>Current Parties </h1>
+        <ul id="myitems"></ul>
+        <table id='myitemstable'>
+          <tr>
+            <th>Party ID</th>
+            <th>Party Name</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+          </tr>
+          <!-- <tr>
+            <td></td>
+            <td><input type="text" id="name"/ class="tbox"></td>
+            <td><input type="button" id="saveitem" class="button" value="Create Party"/></td>
+            <td></td>
+          </tr> -->
+        </table>
+
+
+
+        
+      </div>
+
+      <div id='actionmenuwrapper'>
+        <div id='actionmenu'>
+          <h1>Action Menu</h1>
+          <label>Add a new Party</label>
+          <input type="text" id="name" class="tbox"/>
+          <input type="button" id="saveitem" class="button" value="Create Party"/>
+        </div>
+      </div>
     
+      <p style="text-align: center;">Created By: Robert Velazquez, Claudiu Moise (TR),  Marco Cortes </p>
   </body>
 </html>

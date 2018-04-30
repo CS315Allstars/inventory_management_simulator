@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Apr 17, 2018 at 09:11 PM
+-- Generation Time: Apr 24, 2018 at 08:56 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 5.6.30
 
@@ -58,7 +58,21 @@ CREATE TABLE `characters` (
 --
 
 INSERT INTO `characters` (`charID`, `charName`, `partyID`, `accID`) VALUES
-(1, 'testChar1', 1, 1);
+(1, 'testChar1', 1, 1),
+(18, 'dfvdf', 1, 1),
+(19, 'fdsdf', 1, 1),
+(21, 'marco', 3, 2),
+(23, 'marco3', 3, 2),
+(24, 'marco', 1, 2),
+(25, 'macropolo', 1, 2),
+(27, '4/18TEST', 2, 2),
+(29, 'marco', 1, 1),
+(32, '123', 1, 2),
+(33, '111', 1, 1),
+(34, 'e', 1, 1),
+(35, 'chartest4/', 136, 2),
+(36, 'chartest4/', 136, 2),
+(37, 'fdsdf', 136, 2);
 
 -- --------------------------------------------------------
 
@@ -81,7 +95,14 @@ CREATE TABLE `items` (
 --
 
 INSERT INTO `items` (`itemID`, `thumbnail`, `itemName`, `itemWeight`, `itemValue`, `itemType`, `charID`) VALUES
-(1, '', 'Wooden Sword', 3, 1, 'Weapon', 1);
+(1, '', 'Wooden Sword', 3, 1, 'Weapon', 1),
+(3, '', 'Steel Sword', 5, 15, 'Weapon', 1),
+(6, '', 'AR-Pistol', 8, 600, 'Firearm', 18),
+(8, '', 'NAME', 11111, 111111, 'TYPE', 1),
+(11, '', '', 0, 0, '', 1),
+(12, '', '', 0, 0, '', 1),
+(13, '', 'jjjj', 111, 111, 'qqq', 1),
+(21, '', '', 0, 0, '', 1);
 
 -- --------------------------------------------------------
 
@@ -103,13 +124,7 @@ INSERT INTO `party` (`partyID`, `partyName`) VALUES
 (2, 'Party number 1'),
 (3, 'Test Party # 2'),
 (4, 'More party testing'),
-(5, ''),
-(6, 'Another test'),
-(7, ''),
-(8, ''),
-(9, ''),
-(10, ''),
-(11, '');
+(136, 'test4/24');
 
 --
 -- Indexes for dumped tables
@@ -160,17 +175,17 @@ ALTER TABLE `account`
 -- AUTO_INCREMENT for table `characters`
 --
 ALTER TABLE `characters`
-  MODIFY `charID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `charID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `itemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT for table `party`
 --
 ALTER TABLE `party`
-  MODIFY `partyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `partyID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
 --
 -- Constraints for dumped tables
 --
@@ -179,14 +194,14 @@ ALTER TABLE `party`
 -- Constraints for table `characters`
 --
 ALTER TABLE `characters`
-  ADD CONSTRAINT `characters_ibfk_2` FOREIGN KEY (`accID`) REFERENCES `DnD`.`Account` (`accID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `characters_ibfk_3` FOREIGN KEY (`partyID`) REFERENCES `DnD`.`party` (`partyID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `characters_ibfk_1` FOREIGN KEY (`accID`) REFERENCES `account` (`accID`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `characters_ibfk_2` FOREIGN KEY (`partyID`) REFERENCES `party` (`partyID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `items`
 --
 ALTER TABLE `items`
-  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`charID`) REFERENCES `DnD`.`characters` (`charID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `items_ibfk_1` FOREIGN KEY (`charID`) REFERENCES `characters` (`charID`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
