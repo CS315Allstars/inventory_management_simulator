@@ -13,7 +13,7 @@
     <title> Characters</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>$(document).ready(function(){     
-      $.get("RPGservices.php",function(data,status){     
+      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){     
         console.log(data);
         var allParties=JSON.parse(data);       
         for(var i=0;i<allParties.length;i++){
@@ -32,7 +32,7 @@
           vName : moreshit,
         };
         console.log(item);
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           $("#header").text("Characters in "+data);
           $("#header2").text("Add new character to "+data);
         });
@@ -44,7 +44,7 @@
           vName : shit, 
         };
         console.log(item3);
-        $.post("http://127.0.0.1/services/RPGservices.php",item3,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item3,function(data){
         });
         document.getElementById(this.id).remove();
       });
@@ -55,7 +55,7 @@
         var item2={
           vName : Name,
         };
-        $.post("http://127.0.0.1/services/RPGservices.php",item2,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item2,function(data){
           console.log(data+"gdfgdf");
           $("#bodytag2").load(location.href );
         });

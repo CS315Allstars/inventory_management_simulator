@@ -12,7 +12,7 @@
     <title> Parties</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>$(document).ready(function(){
-      $.get("RPGservices.php",function(data,status){
+      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){
         console.log(data);
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
@@ -25,7 +25,6 @@
             +allParties[i].partyName
             +"?><form method='get' action='characters.php'><input name='id' type='hidden' value='"
             +allParties[i].partyID
-
             +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
 
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
@@ -38,7 +37,7 @@
           vName : shit,
         };
         console.log(item);
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data);
         });
         //document.getElementById(""+this.id+"").style.visibility='hidden';
@@ -58,14 +57,13 @@
           vName : Name,
         };
         console.log(item);
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data);
         });
         $("#bodytag").load("home.php ");
       });
     });
     </script>
-
 
     <link href="css/home.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">

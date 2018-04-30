@@ -11,7 +11,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>      
       $(document).ready(function(){
-      $.get("RPGservices.php",function(data,status){
+      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){
         console.log(data);
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
@@ -30,7 +30,7 @@
           vName : charQuery,
         };
         console.log(item);
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           $("#header").text("Items belonging to "+data);
           $("#header2").text("Add new item for character "+data);
         });
@@ -42,7 +42,7 @@
           vName : shit,
         };
         console.log(item);
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data);
         });
         document.getElementById(this.id).remove();
@@ -55,7 +55,7 @@
 
         };
         console.log(Name);
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventoty/RPGservices.php",item,function(data){
           console.log(data+"inserttabledatalog");
           $("#bodytag").load(location.href );
         });
