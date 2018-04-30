@@ -1,0 +1,144 @@
+body, html {
+		height: 100%;
+		font: 400 15px/1.8 "Lato", sans-serif;
+		background-color: #e6e2d3;
+	}
+
+h1{
+	font-weight: bold;
+	color: #8B0000;
+	font-family: 'Do Hyeon', sans-serif;
+}
+
+
+
+#display{
+	background-color: #dac292;
+	padding: 5%;
+	margin: 5%;
+	border-radius: 20px;
+
+}
+
+#logindiv{
+    margin: 0px auto;
+    padding: 20px;
+    border: 6px dashed #b9936c;
+    text-align: center;
+	border-radius: 4px;
+}
+
+#actionmenuwrapper{
+	margin-left:auto; 
+    margin-right:auto;
+	width:60%;
+	margin-top: 40px;
+
+}
+
+#actionmenu{
+	padding: 20px;
+	margin:10px;
+	border: 6px dashed #b9936c;
+	border-radius: 20px;
+}
+#actionmenu *{
+	margin:10px;
+}
+#actionmenu h1{
+	text-align:center;
+}
+
+#tablediv{
+	margin-left:auto; 
+    margin-right:auto;
+    text-align: center;
+
+	margin-top: 7%;
+}
+
+.backlink a:link {
+	color: #9ACD32;
+	font-size: 30px;
+	font-family: 'Do Hyeon', sans-serif;
+
+}
+.backlink a:visited {
+	color: #8B0000;
+	font-size: 30px;
+	font-family: 'Do Hyeon', sans-serif;
+
+}
+
+/*
+
+margin-left:auto; 
+    margin-right:auto;
+*/
+
+/*Interior border: td/th*/
+table{
+	margin-left:auto; 
+    margin-right:auto;
+	
+	border-collapse: collapse;
+
+	border: 6px solid #b9936c;
+	border-radius: 20px;
+	width:60%;
+	text-align:center;
+}
+
+th, td{
+	border: 3px solid #b9936c;
+}
+
+.button{
+	background-color: #ffef96;
+	border: 2px solid #e6e2d3;
+
+	border-radius: 10px;
+	padding: 10px;
+	cursor: pointer;
+
+}
+
+.button:hover {
+    
+	color: #54A6E8;
+	border: solid 2px #54A6E8;
+	box-shadow: 0px 0px 20px #54A6E8;
+}
+
+.charRedirForm{
+	background-color: #9ACD32;
+	border: 2px solid #e6e2d3;
+	cursor: pointer;
+}
+
+.charRedirForm:hover {
+    
+	color: #54A6E8;
+	border: solid 2px #54A6E8;
+	box-shadow: 0px 0px 20px #54A6E8;
+}
+
+.deleteBtn{
+	background-color: #8B0000;
+	border: 2px solid #e6e2d3;
+	color: #e6e2d3;
+	
+}
+
+.deleteBtn:hover {
+    
+	color: #54A6E8;
+	border: solid 2px #54A6E8;
+	box-shadow: 0px 0px 20px #54A6E8;
+}
+
+.tbox{
+	background-color: #e6e2d3;
+	border: 1px solid #b9936c;
+	padding: 5px;
+}
