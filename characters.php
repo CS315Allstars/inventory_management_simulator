@@ -1,11 +1,10 @@
 <?php
   session_start();
-  $_SESSION['table']='characters';
   $_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_GET['id'];
-  $_SESSION['id']=$_GET['id'];
   //echo $testThing;
   $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
   //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_SESSION['id'];
+  $sessionPartyID=$_GET['id'];
 
 ?>
 <!DOCTYPE html>
@@ -62,6 +61,7 @@
         });
         //'<?$_SESSION['id'] = $_GET['id']?>';
         
+
       });
     });
     </script>
@@ -95,5 +95,6 @@
           </div>
       </div>
     </div>
+
   </body>
 </html>
