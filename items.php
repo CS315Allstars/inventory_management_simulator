@@ -47,8 +47,11 @@
         });
         document.getElementById(this.id).remove();
       });
+      //thumbnail addition has been set to static
       $("#saveitem").click(function(){
         var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id']?>')";
+
+        // var Name="INSERT INTO items (thumbnail, itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+nothumb+"','"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id']?>')";
         //var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
         var item={
           vName : Name,
@@ -74,7 +77,7 @@
         <a href="home.php">Back to party list</a>
       </div>
 
-      <p><?php echo $_GET['id']?></p>
+      <!-- <p><?php echo $_GET['id']?></p> -->
 
       <div id='tablediv'>
         <h1 id='header'></h1>
@@ -96,13 +99,20 @@
         <div id='actionmenu'>
           <h1>Add New Item To Character </h1>
           <label>Item Name:</label>
-          <input type="text" id="name" class="tbox"/><br>
+          <input type="text" id="name" class="tbox"/><br/>
           <label>Item Weight:</label>
-          <input type="text" id="weight" class="tbox"/><br>
+          <input type="text" id="weight" class="tbox"/><br/>
           <label>Item Value:</label>
-          <input type="text" id="value" class="tbox"/><br>
+          <input type="text" id="value" class="tbox"/><br/>
           <label>Item Type:</label>
-          <input type="text" id="type" class="tbox"/><br>
+          <input list="typelist" type="text" id="type" class="tbox"/><br/>
+          <datalist id="typelist">
+            <option value="Armor"></option>
+            <option value="Weapon"></option>
+            <option value="Misc/Treasure"></option>
+            <option value="Consumable"></option>
+          </datalist>
+
           <input type="button" id="saveitem" value="Save Item" class="button" />
         </div>
       </div>

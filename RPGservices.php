@@ -41,22 +41,26 @@
       echo "ERROR: $sql_insert did not run. ".mysqli_error($conn);
     }*/
     $sql_insert=$_POST['vName'];
-    echo "SQL: ".$sql_insert;
+    
+    // For Debugging
+    // echo "SQL: ".$sql_insert;
     $result=mysqli_query($conn,$sql_insert);
 
-    if($conn){
-      echo "conn succesful";
-    }
-    else{
-      echo "conn failed";
-    }
 
-    if($result){
-      echo "result succesful";
-    }
-    else{
-      echo "result failed";
-    }
+    // For Debugging
+    // if($conn){
+    //   echo "conn succesful";
+    // }
+    // else{
+    //   echo "conn failed";
+    // }
+
+    // if($result){
+    //   echo "result succesful";
+    // }
+    // else{
+    //   echo "result failed";
+    // }
     if(substr($sql_insert,0,6)=='SELECT'){
       //echo "not inserting into table";
       if(mysqli_num_rows($result)>0){

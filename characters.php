@@ -57,11 +57,26 @@
         };
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item2,function(data){
           console.log(data+"gdfgdf");
+          //autoRefreshes Page
           $("#bodytag2").load(location.href );
         });
-        //'<?$_SESSION['id'] = $_GET['id']?>';
-        
 
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
+          $("#header").text("All characters in "+data);
+        });
+        //'<?$_SESSION['id'] = $_GET['id']?>';
+      
+      //claude Code 
+      // $("#comparestatistics").click(function(){
+      //   var allParties=JSON.parse(data);       
+      //   for(var i=0;i<allParties.length;i++){
+      //     var party="<td>"+allParties[i].charID
+      //       +"</td><td>"+allParties[i].charName
+      //       +"</td><td></td>";
+      //     party="<tr id='"+allParties[i].charID+"'>"+party+"</tr>";
+          
+      //   }
+      //   });
       });
     });
     </script>
@@ -77,8 +92,11 @@
         <a href="home.php">Back to party list</a>
       </div>
 
-      <p><?php echo $_GET['id'] ?></p>  
-      <div id='tablediv'>
+<!--       <p><?php echo $_GET['id'] ?></p>   -->
+        <div id='tablediv'>
+          <!-- Filled in with PHP -->
+          <h1 id='header'></h1>
+
         <table id='myitemstable'>
           <tr>
             <th>Character ID</th>
@@ -88,6 +106,18 @@
           </tr>
         </table>
       </div>
+
+      <!-- <div id='tablediv'>
+        <table id='myitemstable'>
+          <tr>
+            <th>Character ID</th>
+            <th>Name</th>
+            <th>&nbsp;</th>
+            <th>&nbsp;</th>
+          </tr>
+        </table>
+      </div> -->
+
       <div id='actionmenuwrapper'>
           <div id='actionmenu'>
             <h1>Action Menu</h1>
@@ -96,6 +126,17 @@
             <label>Account number:</label>
             <input class="tbox" type="text" id="account"/><br>
             <input class="button" type="button" id="saveitem" value="Save Item"/>
+
+            <h1>Show Statistics</h1>
+
+            <!-- Use for a form submit -->
+            <!-- <?php $_SESSION['id']='allParties[i].charID'
+            ;?></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].charID+"' value='Delete'>
+
+            <form method='get' action='items.php'><input type='hidden' name='id' value="
+            +allParties[i].charID
+            +"><input type='submit' value='Show Character Items' class='charRedirForm button'> -->
+
           </div>
       </div>
     </div>
