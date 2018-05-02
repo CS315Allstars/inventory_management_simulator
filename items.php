@@ -37,9 +37,9 @@
       });
 
       $('body').on('click', 'input.deleteBtn', function() {   
-        var shit="DELETE FROM items WHERE itemID="+this.id+";";
+        var what="DELETE FROM items WHERE itemID="+this.id+";";
         var item={
-          vName : shit,
+          vName : what,
         };
         console.log(item);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
@@ -51,8 +51,6 @@
       $("#saveitem").click(function(){
         var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id']?>')";
 
-        // var Name="INSERT INTO items (thumbnail, itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+nothumb+"','"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id']?>')";
-        //var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
         var item={
           vName : Name,
 
@@ -74,7 +72,11 @@
   <body id='bodytag'>
     <div id="display">
       <div class="backlink">
-        <a href="home.php">Back to party list</a>
+        <a href="home.php">Back to Party list</a>
+        	<!-- A dynamic backlink would be nice -->
+        <!-- <form method='get' action='characters.php'><input name='id' type='hidden' value='"
+            +allParties[i].partyID
+            +"'> -->
       </div>
 
       <!-- <p><?php echo $_GET['id']?></p> -->

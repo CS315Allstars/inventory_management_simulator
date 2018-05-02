@@ -25,16 +25,22 @@
             +allParties[i].partyName
             +"?><form method='get' action='characters.php'><input name='id' type='hidden' value='"
             +allParties[i].partyID
-            +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
+            +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><? $_SESSION['id']="
+            +allParties[i].partyID
+            +"; $_GET['partyName']="
+            +allParties[i].partyName
+            +"?><form method='get' action='comparison2.php'><input name='id' type='hidden' value='"
+            +allParties[i].partyID
+            +"'><input type='submit' value='Show Stats' class='button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
 
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
       });
       $('body').on('click', 'input.deleteBtn', function() {   
-        var shit="DELETE FROM party WHERE partyID="+this.id+";";
+        var what="DELETE FROM party WHERE partyID="+this.id+";";
         var item={
-          vName : shit,
+          vName : what,
         };
         console.log(item);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
@@ -44,8 +50,8 @@
         document.getElementById(""+this.id+"").remove();
       });
       
-      $("#shit").click(function(){
-        var teststr="shit";
+      $("#what").click(function(){
+        var teststr="what";
         console.log(teststr);
         $("#test").val("teststr");
         
@@ -90,6 +96,7 @@
           <tr>
             <th>Party ID</th>
             <th>Party Name</th>
+            <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th>&nbsp;</th>
           </tr>

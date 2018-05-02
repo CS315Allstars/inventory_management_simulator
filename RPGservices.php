@@ -11,6 +11,7 @@
   $username='root' ;
   $password='';
 
+  //sets up connection to the database
   $conn=mysqli_connect($url,$username,$password,$database);
   if(!$conn){
     die('Connection failed'.$conn->connect_error);
@@ -30,7 +31,14 @@
       echo "No data";
     }
   }
+  /*
+	Alternative: use names to distinguish between methods
+	
+	if(isset($_POST['submitcharacter'])){
+		//Rest of code
 
+	}
+  */
   else if($method=="POST"){
     /*$name=$_POST['partyName'];
     $sql_insert="INSERT INTO party(partyName) VALUES ('$name')";
@@ -40,6 +48,7 @@
     else{
       echo "ERROR: $sql_insert did not run. ".mysqli_error($conn);
     }*/
+    //sql_insert is the SQL reps the actual SQL command, passed in by PHP
     $sql_insert=$_POST['vName'];
     
     // For Debugging

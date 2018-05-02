@@ -47,7 +47,7 @@ SELECT charName, ch.charID, itemType, count(itemName) FROM items it
 JOIN characters ch ON ch.charID = it.charID
 where itemType = 'Armor' AND ch.charID = 1;
 
-SELECT charName, ch.charID, SUM(itemWeight) FROM items it
+SELECT charName, ch.charID, SUM(itemWeight) as sumWeight FROM items it
 JOIN characters ch ON ch.charID = it.charID
 GROUP BY charName;
 
