@@ -10,6 +10,7 @@
   $database='RPGtracker';
   $username='root' ;
   $password='';
+  //$_SESSION['login']="";
 
   //sets up connection to the database
   $conn=mysqli_connect($url,$username,$password,$database);
@@ -19,7 +20,9 @@
   $method=$_SERVER['REQUEST_METHOD'];
   if($method=="GET"){
 
-    $result=mysqli_query($conn,$_SESSION['query']);
+    $result=mysqli_query($conn,$_GET['query']);
+
+    //$result=mysqli_query($conn,$_SESSION['query']);
     $rows=array();
     if(mysqli_num_rows($result)>0){
       while($r=mysqli_fetch_assoc($result)){
@@ -31,6 +34,21 @@
       echo "No data";
     }
   }
+  elseif ($method=="POST" && $_POST['action']=='login') {
+    $result=mysqli_query($conn,$_POST['vName']);
+
+    if(mysqli_num_rows($result)!=0){
+      if (mysqli_fetch_assoc($result)['password']==$_POST['password']){
+        $_SESSION['username']=$_POST['username'];
+        echo $_SESSION['username'];
+      }
+    }
+
+    
+    else 
+      echo 'it did not work';
+    //echo "newmethod";
+  }
   /*
 	Alternative: use names to distinguish between methods
 	
@@ -40,36 +58,12 @@
 	}
   */
   else if($method=="POST"){
-    /*$name=$_POST['partyName'];
-    $sql_insert="INSERT INTO party(partyName) VALUES ('$name')";
-    if(mysqli_query($conn,$sql_insert)){
-      echo "Items succesfully added to the database.";
-    }
-    else{
-      echo "ERROR: $sql_insert did not run. ".mysqli_error($conn);
-    }*/
-    //sql_insert is the SQL reps the actual SQL command, passed in by PHP
-    $sql_insert=$_POST['vName'];
     
-    // For Debugging
-    // echo "SQL: ".$sql_insert;
+    $sql_insert=$_POST['vName'];   
     $result=mysqli_query($conn,$sql_insert);
+    if($result)
+      echo 'success';
 
-
-    // For Debugging
-    // if($conn){
-    //   echo "conn succesful";
-    // }
-    // else{
-    //   echo "conn failed";
-    // }
-
-    // if($result){
-    //   echo "result succesful";
-    // }
-    // else{
-    //   echo "result failed";
-    // }
     if(substr($sql_insert,0,6)=='SELECT'){
       //echo "not inserting into table";
       if(mysqli_num_rows($result)>0){

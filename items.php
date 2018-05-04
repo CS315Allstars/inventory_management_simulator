@@ -1,8 +1,8 @@
 <?php
   session_start();
-  $_SESSION['table']='items';
-  $_SESSION['query']='SELECT * FROM items WHERE charID='.$_GET['id'];
-  $_SESSION['rows']='itemName,itemWeight,itemValue,itemType,charID';
+  //$_SESSION['table']='items';
+  //$_SESSION['query']='SELECT * FROM items WHERE charID='.$_GET['id'];
+  //$_SESSION['rows']='itemName,itemWeight,itemValue,itemType,charID';
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>      
       $(document).ready(function(){
-      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){
+        var item={
+          query : 'SELECT * FROM items WHERE charID='+<? echo $_GET['id']?>,
+        };
+      $.get("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data,status){
         console.log(data);
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
@@ -28,9 +31,11 @@
         var charQuery="SELECT charName FROM characters WHERE charID='"+allParties[0].charID+"';";
         var item={
           vName : charQuery,
+          action: "",
         };
         console.log(item);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
+          console.log(data);
           $("#header").text("Items belonging to "+data);
           $("#header2").text("Add new item for character "+data);
         });
