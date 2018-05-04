@@ -12,6 +12,7 @@
         query : "SELECT * FROM party",
       };
       $.get("http://127.0.0.1/services/inventory/RPGservices.php",onload,function(data,status){
+      //$.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){
         console.log(data);
         var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
@@ -24,7 +25,13 @@
             +allParties[i].partyName
             +"?><form method='get' action='characters.php'><input name='id' type='hidden' value='"
             +allParties[i].partyID
-            +"'><input type='submit' value='Show Characters' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
+            +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><? $_SESSION['id']="
+            +allParties[i].partyID
+            +"; $_GET['partyName']="
+            +allParties[i].partyName
+            +"?><form method='get' action='comparison2.php'><input name='id' type='hidden' value='"
+            +allParties[i].partyID
+            +"'><input type='submit' value='Show Stats' class='button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
 
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
@@ -41,15 +48,17 @@
         }
 
       });
+//             +"'><input type='submit' value='Show Characters' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
       
       $('body').on('click', 'input.deleteBtn', function() {   
-        var shit="DELETE FROM party WHERE partyID="+this.id+";";
+        var what="DELETE FROM party WHERE partyID="+this.id+";";
         var item={
           vName : shit,
           action : '',
         };
         console.log(item+this.id);
         var id=this.id;
+
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data);
           if (data=='success') {
@@ -60,8 +69,8 @@
         //document.getElementById(""+this.id+"").remove();
       });
       
-      $("#shit").click(function(){
-        var teststr="shit";
+      $("#what").click(function(){
+        var teststr="what";
         console.log(teststr);
         $("#test").val("teststr");
         
@@ -152,8 +161,6 @@
         </table>
 
 
-
-        
       </div>
 
       <div id='actionmenuwrapper'>

@@ -12,6 +12,7 @@
   $password='';
   //$_SESSION['login']="";
 
+  //sets up connection to the database
   $conn=mysqli_connect($url,$username,$password,$database);
   if(!$conn){
     die('Connection failed'.$conn->connect_error);
@@ -20,6 +21,8 @@
   if($method=="GET"){
 
     $result=mysqli_query($conn,$_GET['query']);
+
+    //$result=mysqli_query($conn,$_SESSION['query']);
     $rows=array();
     if(mysqli_num_rows($result)>0){
       while($r=mysqli_fetch_assoc($result)){
@@ -46,13 +49,21 @@
       echo 'it did not work';
     //echo "newmethod";
   }
+  /*
+	Alternative: use names to distinguish between methods
+	
+	if(isset($_POST['submitcharacter'])){
+		//Rest of code
 
+	}
+  */
   else if($method=="POST"){
     
     $sql_insert=$_POST['vName'];   
     $result=mysqli_query($conn,$sql_insert);
     if($result)
       echo 'success';
+
     if(substr($sql_insert,0,6)=='SELECT'){
       //echo "not inserting into table";
       if(mysqli_num_rows($result)>0){
@@ -62,7 +73,6 @@
           }
           elseif (substr_count($sql_insert, "characters")>0) {
             echo $row['charName']; 
-            //echo "new";
           }
           
         } 

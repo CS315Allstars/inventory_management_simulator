@@ -42,9 +42,9 @@
       });
 
       $('body').on('click', 'input.deleteBtn', function() {   
-        var shit="DELETE FROM items WHERE itemID="+this.id+";";
+        var what="DELETE FROM items WHERE itemID="+this.id+";";
         var item={
-          vName : shit,
+          vName : what,
         };
         console.log(item);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
@@ -52,9 +52,10 @@
         });
         document.getElementById(this.id).remove();
       });
+      //thumbnail addition has been set to static
       $("#saveitem").click(function(){
-        var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id'] ?>')";
-        //var Name=$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val();
+        var Name="INSERT INTO items (itemName,itemWeight,itemValue,itemType,charID) VALUES ('"+$("#name").val()+"','"+$("#weight").val()+"','"+$("#value").val()+"','"+$("#type").val()+"','<?php echo $_GET['id']?>')";
+
         var item={
           vName : Name,
 
@@ -62,6 +63,7 @@
         console.log(Name);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data+"inserttabledatalog");
+          //refreshes page automatically after being added
           $("#bodytag").load(location.href );
         });
         //$("#myitemstable").load("items.php ");
@@ -75,8 +77,14 @@
   <body id='bodytag'>
     <div id="display">
       <div class="backlink">
-        <a href="home.php">Back to party list</a>
+        <a href="home.php">Back to Party list</a>
+        	<!-- A dynamic backlink would be nice -->
+        <!-- <form method='get' action='characters.php'><input name='id' type='hidden' value='"
+            +allParties[i].partyID
+            +"'> -->
       </div>
+
+      <!-- <p><?php echo $_GET['id']?></p> -->
 
       <div id='tablediv'>
         <h1 id='header'></h1>
@@ -98,13 +106,20 @@
         <div id='actionmenu'>
           <h1>Add New Item To Character </h1>
           <label>Item Name:</label>
-          <input type="text" id="name" class="tbox"/><br>
+          <input type="text" id="name" class="tbox"/><br/>
           <label>Item Weight:</label>
-          <input type="text" id="weight" class="tbox"/><br>
+          <input type="text" id="weight" class="tbox"/><br/>
           <label>Item Value:</label>
-          <input type="text" id="value" class="tbox"/><br>
+          <input type="text" id="value" class="tbox"/><br/>
           <label>Item Type:</label>
-          <input type="text" id="type" class="tbox"/><br>
+          <input list="typelist" type="text" id="type" class="tbox"/><br/>
+          <datalist id="typelist">
+            <option value="Armor"></option>
+            <option value="Weapon"></option>
+            <option value="Misc/Treasure"></option>
+            <option value="Consumable"></option>
+          </datalist>
+
           <input type="button" id="saveitem" value="Save Item" class="button" />
         </div>
       </div>

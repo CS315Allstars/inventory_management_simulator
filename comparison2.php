@@ -1,35 +1,34 @@
 <?php
-  //session_start();
+  session_start();
   //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_GET['id'];
 
+  $_SESSION['query']='SELECT charName, ch.charID, SUM(itemWeight) AS sumWeight, SUM(itemValue) AS sumValue FROM items it JOIN characters ch ON ch.charID = it.charID WHERE partyID='.$_GET['id'].' GROUP BY charName';
+
+  //make another?
+  //_GET?
+  //make a new page with the same action (get material for the query)
+
   //echo $testThing;
-  //$_SESSION['condi']=' WHERE partyID='.$_GET['id'];
+  $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
   //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_SESSION['id'];
   $sessionPartyID=$_GET['id'];
+//      console.log($_SESSION['query']);    
 
 ?>
 <!DOCTYPE html>
 <html>
   <head>
-    <title> Characters</title>
+    <title> Comparison</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>$(document).ready(function(){ 
-      var item={
-        query : 'SELECT * FROM characters WHERE partyID='+<?echo $_GET['id']?>,
-      };
-      $.get("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data,status){     
-
-        <!--     <script>$(document).ready(function(){     
-      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){      -->
+    <script>$(document).ready(function(){
+      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){     
         console.log(data);
-        var allParties=JSON.parse(data);       
+        
+        var allParties=JSON.parse(data);
         for(var i=0;i<allParties.length;i++){
           var party="<td>"+allParties[i].charID
             +"</td><td>"+allParties[i].charName
-            +"</td><td><?php $_SESSION['id']='allParties[i].charID'
-            ;?> <form method='get' action='items.php'><input type='hidden' name='id' value="
-            +allParties[i].charID
-            +"><input type='submit' value='Show Character Items' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].charID+"' value='Delete'></td>";
+            +"</td><td>"+allParties[i].sumValue+"</td><td>"+allParties[i].sumWeight+"</td>";
           party="<tr id='"+allParties[i].charID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
@@ -39,8 +38,7 @@
         //telling the user which chars are in the party
         var morewhat="SELECT partyName FROM party WHERE partyID='"+allParties[0].partyID+"';";
         var item={
-          vName : moreshit,
-          action : "",
+          vName : morewhat,
         };
         console.log(item);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
@@ -52,8 +50,7 @@
       $('body').on('click', 'input.deleteBtn', function() {   
         var what3="DELETE FROM characters WHERE charID="+this.id;
         var item3={
-          vName : shit, 
-          action : "",
+          vName : what3, 
         };
         console.log(item3);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item3,function(data){
@@ -66,7 +63,6 @@
         console.log(Name);
         var item2={
           vName : Name,
-          action : "",
         };
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item2,function(data){
           console.log(data+"gdfgdf");
@@ -77,7 +73,6 @@
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           $("#header").text("All characters in "+data);
         });
-        //'<?$_SESSION['id'] = $_GET['id']?>';
       });
     });
     </script>
@@ -92,36 +87,21 @@
       <div class="backlink">
         <a href="home.php">Back to party list</a>
       </div>
-      <div id='tablediv'>
-        <h1 id='header'></h1>
+
+<!--       <p><?php echo $_GET['id'] ?></p>   -->
+        <div id='tablediv'>
+          <!-- Filled in with PHP -->
+          <h1 id='header'></h1>
+
         <table id='myitemstable'>
           <tr>
             <th>Character ID</th>
             <th>Character Name</th>
-            <th>&nbsp;</th>
-            <th>&nbsp;</th>
+            <th>Total Weight Carried</th>
+            <th>Net Worth</th>
           </tr>
         </table>
-        <p><?echo $_GET['id']?></p>
       </div>
-
-      
-
-      <div id='actionmenuwrapper'>
-          <div id='actionmenu'>
-            <h1>Action Menu</h1>
-            <label>Character Name:</label>
-            <input class="tbox" type="text" id="name"/><br>
-            <label>Account number:</label>
-            <input class="tbox" type="text" id="account"/><br>
-            <input class="button" type="button" id="saveitem" value="Save Item"/>
-
-         
-
-          </div>
-      </div>
-
-    </div>
 
   </body>
 </html>
