@@ -1,8 +1,8 @@
 <?php
-  session_start();
-  $_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_GET['id'];
+  //session_start();
+  //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_GET['id'];
   //echo $testThing;
-  $_SESSION['condi']=' WHERE partyID='.$_GET['id'];
+  //$_SESSION['condi']=' WHERE partyID='.$_GET['id'];
   //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_SESSION['id'];
   $sessionPartyID=$_GET['id'];
 
@@ -12,8 +12,11 @@
   <head>
     <title> Characters</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script>$(document).ready(function(){     
-      $.get("RPGservices.php",function(data,status){     
+    <script>$(document).ready(function(){ 
+      var item={
+        query : 'SELECT * FROM characters WHERE partyID='+<?echo $_GET['id']?>,
+      };
+      $.get("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data,status){     
         console.log(data);
         var allParties=JSON.parse(data);       
         for(var i=0;i<allParties.length;i++){
@@ -30,9 +33,10 @@
         var moreshit="SELECT partyName FROM party WHERE partyID='"+allParties[0].partyID+"';";
         var item={
           vName : moreshit,
+          action : "",
         };
         console.log(item);
-        $.post("http://127.0.0.1/services/RPGservices.php",item,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           $("#header").text("Characters in "+data);
           $("#header2").text("Add new character to "+data);
         });
@@ -42,9 +46,10 @@
         var shit="DELETE FROM characters WHERE charID="+this.id;
         var item3={
           vName : shit, 
+          action : "",
         };
         console.log(item3);
-        $.post("http://127.0.0.1/services/RPGservices.php",item3,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item3,function(data){
         });
         document.getElementById(this.id).remove();
       });
@@ -54,8 +59,9 @@
         console.log(Name);
         var item2={
           vName : Name,
+          action : "",
         };
-        $.post("http://127.0.0.1/services/RPGservices.php",item2,function(data){
+        $.post("http://127.0.0.1/services/inventory/RPGservices.php",item2,function(data){
           console.log(data+"gdfgdf");
           $("#bodytag2").load(location.href );
         });
@@ -75,6 +81,7 @@
         <a href="home.php">Back to party list</a>
       </div>
       <div id='tablediv'>
+        <h1 id='header'></h1>
         <table id='myitemstable'>
           <tr>
             <th>Character ID</th>
@@ -83,6 +90,7 @@
             <th>&nbsp;</th>
           </tr>
         </table>
+        <p><?echo $_GET['id']?></p>
       </div>
       <div id='actionmenuwrapper'>
           <div id='actionmenu'>
