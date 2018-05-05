@@ -1,11 +1,15 @@
 <?php
-  //session_start();
+  session_start();
   //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_GET['id'];
 
   //echo $testThing;
   //$_SESSION['condi']=' WHERE partyID='.$_GET['id'];
   //$_SESSION['query']='SELECT * FROM characters WHERE partyID='.$_SESSION['id'];
   $sessionPartyID=$_GET['id'];
+  //how we pass values in between sessions
+  //PHP is temperamental as fuck
+  //this way deffinetely works
+  $uname_value=$_SESSION['username'];
 
 ?>
 <!DOCTYPE html>
@@ -15,12 +19,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>$(document).ready(function(){ 
       var item={
-        query : 'SELECT * FROM characters WHERE partyID='+<?echo $_GET['id']?>,
+        query : 'SELECT * FROM characters WHERE partyID='+<?php echo $_GET['id']?>,
       };
       $.get("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data,status){     
 
-        <!--     <script>$(document).ready(function(){     
-      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){      -->
+      //       <script>$(document).ready(function(){     
+      // $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){      
         console.log(data);
         var allParties=JSON.parse(data);       
         for(var i=0;i<allParties.length;i++){
@@ -37,22 +41,38 @@
         
         //Dynamically creates the header of the page
         //telling the user which chars are in the party
-        var morewhat="SELECT partyName FROM party WHERE partyID='"+allParties[0].partyID+"';";
+        var moreshit="SELECT partyName FROM party WHERE partyID='"+allParties[0].partyID+"';";
         var item={
           vName : moreshit,
           action : "",
         };
+
+        
+
         console.log(item);
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           $("#header").text("Characters in "+data);
           $("#header2").text("Add new character to "+data);
         });
+
+        // if ("<?php echo $_SESSION['username']?>"=="") {
+        //   //document.getElementById("welsomesession").style.display='none';
+        //   $('td:nth-child(4),th:nth-child(4)').hide();
+        //   $('#actionmenu').hide();
+        //   console.log("SESSION NOT SET");
+        //   //console.log("O hai "+$uname_value);
+        // }
+        // else{
+        //   console.log("Guess who? ITS: <?php echo $_SESSION['username']?>");
+
+        // }
+
       });
 
       $('body').on('click', 'input.deleteBtn', function() {   
         var what3="DELETE FROM characters WHERE charID="+this.id;
         var item3={
-          vName : shit, 
+          vName : what3, 
           action : "",
         };
         console.log(item3);
@@ -102,7 +122,7 @@
             <th>&nbsp;</th>
           </tr>
         </table>
-        <p><?echo $_GET['id']?></p>
+        <p><?php echo $_SESSION['username']?></p>
       </div>
 
       

@@ -1,5 +1,6 @@
 <?php
   session_start();
+  //$_SESSION['username']="";
 
 ?>
 <!DOCTYPE html>
@@ -18,14 +19,13 @@
         for(var i=0;i<allParties.length;i++){
           var party="<td>"+allParties[i].partyID
             +"</td><td>"+allParties[i].partyName
-            
-            +"</td><td><? $_GET['id']="
+            +"</td><td><?php $_GET['id']="
             +allParties[i].partyID
             +"; $_GET['partyName']="
             +allParties[i].partyName
             +"?><form method='get' action='characters.php'><input name='id' type='hidden' value='"
             +allParties[i].partyID
-            +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><? $_SESSION['id']="
+            +"'><input type='submit' value='Show Party' class='charRedirForm button'></form></td><td><?php $_SESSION['id']="
             +allParties[i].partyID
             +"; $_GET['partyName']="
             +allParties[i].partyName
@@ -36,14 +36,20 @@
           party="<tr id='"+allParties[i].partyID+"'>"+party+"</tr>";
           $("#myitemstable").append(party);
         }
+        //VARIABLE SCOPE MAY BE THE CAUSE OF PASSING VALS VIA SESSIONS PROBLEM
         if ("<?php echo $_SESSION['username']?>"=="") {
           //document.getElementById("welsomesession").style.display='none';
           $('td:nth-child(4),th:nth-child(4)').hide();
+          $('td:nth-child(5),th:nth-child(5)').hide();
           $('#logout').hide();
           $('#actionmenu').hide();
           console.log("SESSION NOT SET");
         }
         else {
+          console.log("SESSION HAS BEEN TEMPORARILY SET TO <?php echo $_SESSION['username']?>");
+          $uname_value="<?php echo $_SESSION['username']?>";
+          console.log("bound by scope"+$uname_value);
+
           $('#loginform').hide();
         }
 
@@ -51,7 +57,7 @@
 //             +"'><input type='submit' value='Show Characters' class='charRedirForm button'></form></td><td><input type='button'  class='deleteBtn button' id='"+allParties[i].partyID+"' value='Delete'></td> ";
       
       $('body').on('click', 'input.deleteBtn', function() {   
-        var what="DELETE FROM party WHERE partyID="+this.id+";";
+        var shit="DELETE FROM party WHERE partyID="+this.id+";";
         var item={
           vName : shit,
           action : '',
@@ -61,12 +67,14 @@
 
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data);
-          if (data=='success') {
-            document.getElementById(id).remove();
-          }
+          document.getElementById(id).remove();
+
         });
+
+      
         //document.getElementById(""+this.id+"").style.visibility='hidden';
         //document.getElementById(""+this.id+"").remove();
+
       });
       
       $("#what").click(function(){
@@ -90,6 +98,7 @@
 
       $("#login").click(function(){
         if ($("#uname").val()=='' || $("#pword").val()=='') {
+        	//Creates error message for user
           console.log("shit's empty");
           document.getElementById("unameerror").style.display='inline';
         }
@@ -101,12 +110,14 @@
           password : $("#pword").val(),
           username : $("#uname").val(),
         };
+        //When we post to the server it will change the $_SESSION to the username entered
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data);
           if (data==$("#uname").val()) {
+  			//$uname_value=$_SESSION['username'];
             
-            console.log("<? echo $_SESSION['username']?>");
-            console.log('yup'); 
+            console.log("Out of scope Current Session Name:"+"<?php echo $_SESSION['username']?>");
+            //console.log("GOGO value "+$uname_value)
             $("#bodytag").load("home.php ");
           }
         });
@@ -116,7 +127,9 @@
       $("#logoutbtn").click(function(){
         
         console.log("it's 3:30am and this wont work for some reason");
-        //$("#bodytag").load("home.php ");
+        //<?php $_SESSION['username']="";?>
+
+        $("#bodytag").load("home.php ");
       });
       
     });
@@ -131,7 +144,7 @@
       <div id="logindiv">
         <h1>Inventory Management Simulator 2018</h1>
           <div id='logout'>
-            <h1 style="text-align: center;"><?php echo $_SESSION['username'];?></h1>
+            <!-- <h1 style="text-align: center;"><?php echo $_SESSION['username'];?></h1> -->
             <input type="button" id="logoutbtn" class="button" value="Log Out"/> 
           </div>
           
@@ -149,6 +162,7 @@
           <tr>
             <th>Party ID</th>
             <th>Party Name</th>
+            <th>&nbsp;</th>
             <th>&nbsp;</th>
             <th id='deletecolumn'>&nbsp;</th>
           </tr>

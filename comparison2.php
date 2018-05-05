@@ -21,7 +21,10 @@
     <title> Comparison</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script>$(document).ready(function(){
-      $.get("http://127.0.0.1/services/inventory/RPGservices.php",function(data,status){     
+      var item={
+        query : 'SELECT charName, ch.charID, SUM(itemWeight) AS sumWeight, SUM(itemValue) AS sumValue FROM items it JOIN characters ch ON ch.charID = it.charID WHERE partyID='+<?php echo $_GET['id']?>+' GROUP BY charName',
+      };
+      $.get("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data,status){      
         console.log(data);
         
         var allParties=JSON.parse(data);
@@ -91,7 +94,6 @@
 <!--       <p><?php echo $_GET['id'] ?></p>   -->
         <div id='tablediv'>
           <!-- Filled in with PHP -->
-          <h1 id='header'></h1>
 
         <table id='myitemstable'>
           <tr>

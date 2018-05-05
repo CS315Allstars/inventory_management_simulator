@@ -1,5 +1,8 @@
 <?php
   session_start();
+  //$_SESSION['username']=$uname_value;
+  $uname_value=$_SESSION['username'];
+
   //$_SESSION['table']='items';
   //$_SESSION['query']='SELECT * FROM items WHERE charID='.$_GET['id'];
   //$_SESSION['rows']='itemName,itemWeight,itemValue,itemType,charID';
@@ -12,7 +15,7 @@
     <script>      
       $(document).ready(function(){
         var item={
-          query : 'SELECT * FROM items WHERE charID='+<? echo $_GET['id']?>,
+          query : 'SELECT * FROM items WHERE charID='+<?php echo $_GET['id']?>,
         };
       $.get("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data,status){
         console.log(data);
@@ -34,6 +37,18 @@
           action: "",
         };
         console.log(item);
+
+        // if ("<?php echo $_SESSION['username']?>"=="") {
+        //   //document.getElementById("welsomesession").style.display='none';
+        //   $('td:nth-child(7),th:nth-child(7)').hide();
+        //   $('#actionmenu').hide();
+        //   console.log("SESSION NOT SET");
+        //   //console.log("O hai "+$uname_value);
+        // }
+        // else{
+        //   console.log("Guess who? ITS: <?php echo $_SESSION['username']?>");
+        // }
+
         $.post("http://127.0.0.1/services/inventory/RPGservices.php",item,function(data){
           console.log(data);
           $("#header").text("Items belonging to "+data);

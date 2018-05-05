@@ -33,14 +33,18 @@
 
       echo "No data";
     }
-  }
+  }//checks if we are logged in the first place
   elseif ($method=="POST" && $_POST['action']=='login') {
     $result=mysqli_query($conn,$_POST['vName']);
 
     if(mysqli_num_rows($result)!=0){
       if (mysqli_fetch_assoc($result)['password']==$_POST['password']){
         $_SESSION['username']=$_POST['username'];
+        //$uname_value = $_SESSION['username'];
         echo $_SESSION['username'];
+        
+        //echo $uname_value;
+
       }
     }
 
@@ -61,8 +65,7 @@
     
     $sql_insert=$_POST['vName'];   
     $result=mysqli_query($conn,$sql_insert);
-    if($result)
-      echo 'success';
+    
 
     if(substr($sql_insert,0,6)=='SELECT'){
       //echo "not inserting into table";
